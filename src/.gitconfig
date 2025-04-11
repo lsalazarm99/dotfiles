@@ -1,0 +1,24 @@
+[includeIf "gitDir:~/Projects/Work/**"]
+    path = ~/Projects/Work/.gitconfig
+
+[user]
+	name = Leonardo Salazar
+	email = 42286051+lsalazarm99@users.noreply.github.com
+
+[init]
+	defaultBranch = main
+
+[core]
+	autocrlf = input
+
+[commit]
+	gpgSign = true
+
+[tag]
+	gpgSign = true
+
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/allowed_signers
