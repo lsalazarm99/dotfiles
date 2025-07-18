@@ -68,7 +68,7 @@ fi
 # Install gemini-cli
 if ! command -v gemini &> /dev/null; then
   echo "⚙️ Installing gemini-cli..."
-  mise exec node -- npx https://github.com/google-gemini/gemini-cli
+  mise exec node -- npx -y https://github.com/google-gemini/gemini-cli
   echo "⚙️ gemini-cli installation completed."
 fi
 
