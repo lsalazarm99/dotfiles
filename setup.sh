@@ -33,12 +33,12 @@ fi
 
 # Update the packages list
 echo "⚙️ Updating package list..."
-sudo apt update
+sudo apt-get update
 echo "⚙️ Package list updated."
 
 # Install packages
 echo "⚙️ Installing packages..."
-sudo apt install -y bat btop eza fd-find fish fzf mc mise micro ripgrep
+sudo apt-get install -y bat btop eza fd-find fish fzf mc mise micro ripgrep
 echo "⚙️ Packages installed."
 
 # Add lesspipe.sh if it doesn't exist
