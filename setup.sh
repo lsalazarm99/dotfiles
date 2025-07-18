@@ -2,28 +2,15 @@
 
 echo "⚙️ Setting up your environment..."
 
-# Create the .config directory
-if [ ! -d "$HOME"/.config ]; then
-  mkdir "$HOME"/.config
-  echo "⚙️ ~/.config directory created."
-fi
-
 # Copy configuration files
-cp -f "$(dirname "$0")"/src/{.gitconfig,.lessfilter} "$HOME"
+if [ ! -d "$HOME"/.config ]; then mkdir "$HOME"/.config; fi
+if [ ! -d "$HOME"/.ssh ]; then mkdir "$HOME"/.ssh; fi
+
 cp -rf "$(dirname "$0")"/src/.config/* "$HOME"/.config
+cp -rf "$(dirname "$0")"/src/.ssh/* "$HOME"/.ssh
+cp -f "$(dirname "$0")"/src/{.gitconfig,.lessfilter} "$HOME"
+
 echo "⚙️ Configuration files copied."
-
-# Create the .ssh directory
-if [ ! -d "$HOME"/.ssh ]; then
-  mkdir "$HOME"/.ssh
-  echo "⚙️ ~/.ssh directory created."
-fi
-
-# Create the .ssh/allowed_signers template file
-if [ ! -f "$HOME"/.ssh/allowed_signers ]; then
-  echo '# Add your keys here as "<email> <key>"' >"$HOME"/.ssh/allowed_signers
-  echo "⚙️ ~/.ssh/allowed_signers template file created."
-fi
 
 # Create the keyrings directory if it doesn't exist
 sudo install -dm 755 /etc/apt/keyrings
