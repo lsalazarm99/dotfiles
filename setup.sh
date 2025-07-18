@@ -7,6 +7,7 @@ if [ ! -d "$HOME"/.config ]; then mkdir "$HOME"/.config; fi
 if [ ! -d "$HOME"/.ssh ]; then mkdir "$HOME"/.ssh; fi
 
 cp -rf "$(dirname "$0")"/src/.config/* "$HOME"/.config
+cp -rf "$(dirname "$0")"/src/.gemini/* "$HOME"/.gemini
 cp -rf "$(dirname "$0")"/src/.ssh/* "$HOME"/.ssh
 cp -f "$(dirname "$0")"/src/{.gitconfig,.lessfilter} "$HOME"
 
