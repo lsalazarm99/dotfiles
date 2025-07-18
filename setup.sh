@@ -51,14 +51,7 @@ echo "⚙️ Package list updated."
 
 # Install packages
 echo "⚙️ Installing packages..."
-for pkg in bat btop eza fd-find fish fzf jq mc mise micro ripgrep; do
-  if ! dpkg -l | grep -qw "$pkg"; then
-    echo "⚙️ Installing $pkg..."
-    sudo apt install -y "$pkg"
-  else
-    echo "⚙️ $pkg is already installed."
-  fi
-done
+sudo apt install -y bat btop eza fd-find fish fzf jq mc mise micro ripgrep
 echo "⚙️ Packages installed."
 
 # Add lesspipe.sh if it doesn't exist
