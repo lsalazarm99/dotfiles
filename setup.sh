@@ -51,7 +51,7 @@ echo "⚙️ Package list updated."
 
 # Install packages
 echo "⚙️ Installing packages..."
-sudo apt install -y bat btop eza fd-find fish fzf jq mc mise micro ripgrep
+sudo apt install -y bat btop eza fd-find fish fzf mc mise micro ripgrep
 echo "⚙️ Packages installed."
 
 # Add lesspipe.sh if it doesn't exist
@@ -72,42 +72,6 @@ fi
 echo "⚙️ Installing fish plugins..."
 fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update </dev/null'
 echo "⚙️ fish plugins installed."
-
-# Add Coder SSH keys and set up git signing if running in a Coder workspace
-if [[ -n "$CODER_AGENT_URL" ]] && [[ -n "$CODER_AGENT_TOKEN" ]]; then
-  echo "⚙️ Adding Coder SSH keys..."
-
-  SSH_KEY=$(
-    curl --request GET \
-      --url "${CODER_AGENT_URL}api/v2/workspaceagents/me/gitsshkey" \
-      --header "Coder-Session-Token: ${CODER_AGENT_TOKEN}" \
-      --silent --show-error
-  )
-
-  jq --raw-output ".public_key" >"$HOME"/.ssh/id_ed25519_coder.pub <<EOF
-$SSH_KEY
-EOF
-
-  jq --raw-output ".private_key" >"$HOME"/.ssh/id_ed25519_coder <<EOF
-$SSH_KEY
-EOF
-
-  chmod -R 644 ~/.ssh/id_ed25519_coder.pub
-  chmod -R 600 ~/.ssh/id_ed25519_coder
-
-  echo "⚙️ Coder SSH keys added."
-
-  git config --global user.signingKey "$HOME"/.ssh/id_ed25519_coder.pub
-  echo "⚙️ Git signing key set to Coder SSH key."
-
-  # Add the Coder SSH key to the allowed signers file if it doesn't already exist
-  if ! grep -q "42286051+lsalazarm99@users.noreply.github.com $(cat "$HOME"/.ssh/id_ed25519_coder.pub)" "$HOME"/.ssh/allowed_signers; then
-    echo "42286051+lsalazarm99@users.noreply.github.com $(cat "$HOME"/.ssh/id_ed25519_coder.pub)" >>"$HOME"/.ssh/allowed_signers
-    echo "⚙️ Signing key added to ~/.ssh/allowed_signers."
-  fi
-
-  unset SSH_KEY
-fi
 
 # Make any interactive shell use fish
 if ! grep -q "exec fish" "$HOME"/.bashrc; then
