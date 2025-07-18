@@ -65,4 +65,11 @@ if ! grep -q "exec fish" "$HOME"/.bashrc; then
   echo -e '\nif [[ $- == *i* ]] && [[ -z "$BASH_EXECUTION" ]] && [[ "$SHELL" != */fish ]]; then\n  export BASH_EXECUTION=1\n  exec fish\nfi' >>"$HOME"/.bashrc
 fi
 
+# Install gemini-cli
+if ! command -v gemini &> /dev/null; then
+  echo "⚙️ Installing gemini-cli..."
+  mise exec node -- npx https://github.com/google-gemini/gemini-cli
+  echo "⚙️ gemini-cli installation completed."
+fi
+
 echo "⚙️ Finished setting up your environment!"

@@ -1,0 +1,9 @@
+{
+  "theme": "ANSI",
+  "checkpointing": {
+    "enabled": true
+  },
+  "telemetry": {
+    "enabled": false
+  }
+}
