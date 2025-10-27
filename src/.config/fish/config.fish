@@ -18,7 +18,12 @@ if test -d "$HOME/.local/bin"
     fish_add_path -gP "$HOME/.local/bin"
 end
 
-mise activate fish | source
+if status is-interactive
+    mise activate fish | source
+else
+    mise activate fish --shims | source
+end
+
 rg --generate complete-fish | source
 starship init fish | source
 
