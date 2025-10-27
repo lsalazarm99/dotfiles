@@ -55,6 +55,34 @@ if [[ ! -f /usr/local/bin/starship ]]; then
   echo "⚙️ starship installation completed."
 fi
 
+# Install AWS CLI if it doesn't exist
+if [[ ! -f /usr/local/bin/aws ]]; then
+  echo "⚙️ Installing AWS CLI and plugins..."
+
+  ARCH=$(uname -m)
+
+  if [[ "$ARCH" == "x86_64" || "$ARCH" == "aarch64" ]]; then
+    if [[ "$ARCH" == "x86_64" ]]; then
+      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
+      curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "/tmp/session-manager-plugin.deb"
+    else
+      curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "/tmp/awscliv2.zip"
+      curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_arm64/session-manager-plugin.deb" -o "/tmp/session-manager-plugin.deb"
+    fi
+
+    unzip -o /tmp/awscliv2.zip -d /tmp
+    sudo /tmp/aws/install
+    rm -rf /tmp/aws /tmp/awscliv2.zip
+    echo "⚙️ AWS CLI installation completed."
+
+    sudo dpkg -i /tmp/session-manager-plugin.deb
+    rm -f /tmp/session-manager-plugin.deb
+    echo "⚙️ AWS Session Manager plugin installation completed."
+  else
+    echo "⚠️ Unsupported architecture: $ARCH. Skipping AWS CLI installation."
+  fi
+fi
+
 # Install fish plugins
 echo "⚙️ Installing fish plugins..."
 fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update </dev/null'
