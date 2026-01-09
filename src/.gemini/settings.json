@@ -1,0 +1,39 @@
+{
+  "general": {
+    "checkpointing": {
+      "enabled": true
+    },
+    "preferredEditor": "vscode",
+    "previewFeatures": true,
+    "enablePromptCompletion": true
+  },
+  "ui": {
+    "theme": "ANSI",
+    "showStatusInTitle": true,
+    "footer": {
+      "hideContextPercentage": false
+    },
+    "showMemoryUsage": true,
+    "showCitations": true,
+    "showModelInfoInChat": true
+  },
+  "privacy": {
+    "usageStatisticsEnabled": false
+  },
+  "tools": {
+    "shell": {
+      "showColor": true
+    }
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "admin": {
+    "secureModeEnabled": true
+  },
+  "telemetry": {
+    "enabled": false
+  }
+}

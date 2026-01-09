@@ -4,9 +4,11 @@ echo "⚙️ Setting up your environment..."
 
 # Copy configuration files
 if [ ! -d "$HOME"/.config ]; then mkdir "$HOME"/.config; fi
+if [ ! -d "$HOME"/.gemini ]; then mkdir "$HOME"/.gemini; fi
 if [ ! -d "$HOME"/.ssh ]; then mkdir "$HOME"/.ssh; fi
 
 cp -rf "$(dirname "$0")"/src/.config/* "$HOME"/.config
+cp -rf "$(dirname "$0")"/src/.gemini/* "$HOME"/.gemini
 cp -rf "$(dirname "$0")"/src/.ssh/* "$HOME"/.ssh
 cp -f "$(dirname "$0")"/src/{.gitconfig,.lessfilter} "$HOME"
 
@@ -91,6 +93,13 @@ echo "⚙️ fish plugins installed."
 # Make any interactive shell use fish
 if ! grep -q "exec fish" "$HOME"/.bashrc; then
   echo -e '\nif [[ $- == *i* ]] && [[ -z "$BASH_EXECUTION" ]] && [[ "$SHELL" != */fish ]]; then\n  export BASH_EXECUTION=1\n  exec fish\nfi' >>"$HOME"/.bashrc
+fi
+
+# Install gemini-cli
+if ! command -v gemini &> /dev/null; then
+  echo "⚙️ Installing gemini-cli..."
+  mise exec node -- npm install -g @google/gemini-cli
+  echo "⚙️ gemini-cli installation completed."
 fi
 
 echo "⚙️ Finished setting up your environment!"
