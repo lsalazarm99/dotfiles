@@ -1,6 +1,3 @@
-[includeIf "gitDir:~/Projects/Work/**"]
-    path = ~/Projects/Work/.gitconfig
-
 [user]
 	name = Leonardo Salazar
 	email = 42286051+lsalazarm99@users.noreply.github.com
