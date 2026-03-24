@@ -8,6 +8,7 @@
 
 [core]
 	autocrlf = input
+	excludesFile = ~/.gitignore
 
 [commit]
 	gpgSign = true

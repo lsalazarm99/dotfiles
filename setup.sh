@@ -8,7 +8,7 @@ if [ ! -d "$HOME"/.ssh ]; then mkdir "$HOME"/.ssh; fi
 
 cp -rf "$(dirname "$0")"/src/.config/* "$HOME"/.config
 cp -rf "$(dirname "$0")"/src/.ssh/* "$HOME"/.ssh
-cp -f "$(dirname "$0")"/src/{.gitconfig,.lessfilter} "$HOME"
+cp -f "$(dirname "$0")"/src/{.gitconfig,.gitignore,.lessfilter} "$HOME"
 
 echo "⚙️ Configuration files copied."
 
