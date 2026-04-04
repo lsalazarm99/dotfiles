@@ -1,0 +1,58 @@
+{
+  "$schema": "https://app.kilo.ai/config.json",
+  "tools": {
+    "context7": true,
+    "firecrawl": false,
+    "linear": true,
+    "figma": true,
+    "smile": true,
+    "zai": true,
+  },
+  "model": "zai-coding-plan/glm-5.1",
+  "permission": {
+    "external_directory": "ask",
+  },
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}",
+      },
+    },
+    "firecrawl-mcp": {
+      "type": "local",
+      "command": ["mise", "exec", "--", "npx", "-y", "firecrawl-mcp"],
+      "environment": {
+        "FIRECRAWL_API_KEY": "{env:FIRECRAWL_API_KEY}",
+      },
+    },
+    "linear": {
+      "type": "remote",
+      "url": "https://mcp.linear.app/mcp",
+      "headers": {
+        "Authorization": "Bearer {env:LINEAR_API_KEY}",
+      },
+    },
+    "figma": {
+      "type": "remote",
+      "url": "http://127.0.0.1:3845/mcp",
+    },
+    "smile": {
+      "type": "local",
+      "command": ["mise", "exec", "--", "npx", "-y", "@alegradev/smile-mcp"],
+      "environment": {
+        "FIGMA_TOKEN": "{env:FIGMA_API_KEY}",
+      },
+    },
+    "zai-mcp-server": {
+      "type": "local",
+      "command": ["mise", "exec", "--", "npx", "-y", "@z_ai/mcp-server"],
+      "environment": {
+        "Z_AI_API_KEY": "{env:Z_AI_API_KEY}",
+        "Z_AI_MODE": "ZAI",
+      },
+    },
+  },
+  "username": "Leo",
+}
