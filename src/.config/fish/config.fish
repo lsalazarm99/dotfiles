@@ -18,6 +18,11 @@ if test -d "$HOME/.local/bin"
     fish_add_path -gP "$HOME/.local/bin"
 end
 
+# Add ~/.env.sh to PATH if it exists
+if test -f "$HOME/.env.sh"
+    source "$HOME/.env.sh"
+end
+
 if status is-interactive
     mise activate fish | source
 else

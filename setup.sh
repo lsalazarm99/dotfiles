@@ -12,6 +12,16 @@ cp -f "$(dirname "$0")"/src/{.gitconfig,.gitignore,.lessfilter} "$HOME"
 
 echo "⚙️ Configuration files copied."
 
+# Copy .env.sh if it doesn't exist
+if [ ! -f "$HOME"/.env.sh ]; then
+  cp -f "$(dirname "$0")"/.env.sh "$HOME"/.env.sh
+  echo "⚙️ .env.sh copied."
+else
+  echo "⚙️ .env.sh already exists. Skipping copy."
+fi
+
+echo "⚙️ Setting up package repositories..."
+
 # Create the keyrings directory if it doesn't exist
 sudo install -dm 755 /etc/apt/keyrings
 
@@ -30,6 +40,8 @@ if ! grep -q "mise.jdx.dev" /etc/apt/sources.list /etc/apt/sources.list.d/*; the
   echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list
   echo "⚙️ mise PPA added."
 fi
+
+echo "⚙️ Package repositories setup completed."
 
 # Update the packages list
 echo "⚙️ Updating package list..."
