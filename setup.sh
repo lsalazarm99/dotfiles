@@ -45,25 +45,25 @@ echo "⚙️ Package repositories setup completed."
 
 # Update the packages list
 echo "⚙️ Updating package list..."
-sudo apt-get update
+sudo apt-get -qq update
 echo "⚙️ Package list updated."
 
 # Install packages
 echo "⚙️ Installing packages..."
-sudo apt-get install -y bat btop eza fd-find fish fzf mc mise micro ripgrep
+sudo apt-get -qq install -y bat btop eza fd-find fish fzf mc mise micro ripgrep
 echo "⚙️ Packages installed."
 
 # Add lesspipe.sh if it doesn't exist
 if [[ ! -f /usr/local/bin/lesspipe.sh ]]; then
   echo "⚙️ Installing lesspipe..."
-  sudo curl https://raw.githubusercontent.com/wofr06/lesspipe/refs/heads/lesspipe/lesspipe.sh -o /usr/local/bin/lesspipe.sh
+  sudo curl -fsS https://raw.githubusercontent.com/wofr06/lesspipe/refs/heads/lesspipe/lesspipe.sh -o /usr/local/bin/lesspipe.sh
   echo "⚙️ lesspipe installation completed."
 fi
 
 # Install starship if it doesn't exist
 if [[ ! -f /usr/local/bin/starship ]]; then
   echo "⚙️ Installing starship..."
-  curl -sS https://starship.rs/install.sh | sh -s -- -y
+  curl -fsS https://starship.rs/install.sh | sh -s -- -y
   echo "⚙️ starship installation completed."
 fi
 
@@ -75,11 +75,11 @@ if [[ ! -f /usr/local/bin/aws ]]; then
 
   if [[ "$ARCH" == "x86_64" || "$ARCH" == "aarch64" ]]; then
     if [[ "$ARCH" == "x86_64" ]]; then
-      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
-      curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "/tmp/session-manager-plugin.deb"
+      curl -fsS "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
+      curl -fsS "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "/tmp/session-manager-plugin.deb"
     else
-      curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "/tmp/awscliv2.zip"
-      curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_arm64/session-manager-plugin.deb" -o "/tmp/session-manager-plugin.deb"
+      curl -fsS "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "/tmp/awscliv2.zip"
+      curl -fsS "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_arm64/session-manager-plugin.deb" -o "/tmp/session-manager-plugin.deb"
     fi
 
     unzip -o /tmp/awscliv2.zip -d /tmp
@@ -97,7 +97,7 @@ fi
 
 # Install fish plugins
 echo "⚙️ Installing fish plugins..."
-fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update </dev/null'
+fish -c 'curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update </dev/null'
 echo "⚙️ fish plugins installed."
 
 # Make any interactive shell use fish
