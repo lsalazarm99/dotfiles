@@ -82,7 +82,7 @@ if [[ ! -f /usr/local/bin/aws ]]; then
       curl -fsS "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_arm64/session-manager-plugin.deb" -o "/tmp/session-manager-plugin.deb"
     fi
 
-    unzip -o /tmp/awscliv2.zip -d /tmp
+    unzip -qq -o /tmp/awscliv2.zip -d /tmp
     sudo /tmp/aws/install
     rm -rf /tmp/aws /tmp/awscliv2.zip
     echo "⚙️ AWS CLI installation completed."
