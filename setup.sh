@@ -105,11 +105,4 @@ if ! grep -q "exec fish" "$HOME"/.bashrc; then
   echo -e '\nif [[ $- == *i* ]] && [[ -z "$BASH_EXECUTION" ]] && [[ "$SHELL" != */fish ]]; then\n  export BASH_EXECUTION=1\n  exec fish\nfi' >>"$HOME"/.bashrc
 fi
 
-# Install Kilo CLI
-if ! command -v kilo &> /dev/null; then
-  echo "⚙️ Installing Kilo CLI..."
-  mise exec node -- npm install -g @kilocode/cli
-  echo "⚙️ Kilo CLI installation completed."
-fi
-
 echo "⚙️ Finished setting up your environment!"
