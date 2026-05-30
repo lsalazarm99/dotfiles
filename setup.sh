@@ -37,10 +37,28 @@ echo "⚙️ Installing packages..."
 sudo apt-get -qq install -y bat btop eza mise micro
 echo "⚙️ Packages installed."
 
+# Add mise activation to interactive Bash shells
+if ! grep -q "mise activate bash" "$HOME"/.bashrc; then
+  # shellcheck disable=SC2016
+  echo -e '\neval "$(mise activate bash)"' >>"$HOME"/.bashrc
+fi
+
+# Add mise activation to non-interactive Bash shells
+if ! grep -q "mise activate bash" "$HOME"/.bash_profile; then
+  # shellcheck disable=SC2016
+  echo -e '\neval "$(mise activate bash --shims)"' >>"$HOME"/.bash_profile
+fi
+
 # Install starship if it doesn't exist
 if [[ ! -f /usr/local/bin/starship ]]; then
   echo "⚙️ Installing starship..."
   curl -fsS https://starship.rs/install.sh | sh -s -- -y
+
+  if ! grep -q "starship init bash" "$HOME"/.bashrc; then
+    # shellcheck disable=SC2016
+    echo -e '\neval "$(starship init bash)"' >>"$HOME"/.bashrc
+  fi
+
   echo "⚙️ starship installation completed."
 fi
 
