@@ -1,2 +1,7 @@
 [tools]
 node = "24"
+pnpm = "latest"
+
+[env]
+PNPM_HOME = "~/.local/share/pnpm/bin"
+_.path = ["$PNPM_HOME"]
