@@ -1,6 +1,4 @@
 [user]
-	name = Leonardo Salazar
-	email = 42286051+lsalazarm99@users.noreply.github.com
 	signingKey = ~/.ssh/id_ed25519.pub
 
 [init]
