@@ -8,7 +8,7 @@ if [ ! -d "$HOME"/.ssh ]; then mkdir "$HOME"/.ssh; fi
 
 cp -rf "$(dirname "$0")"/src/.config/* "$HOME"/.config
 cp -rf "$(dirname "$0")"/src/.ssh/* "$HOME"/.ssh
-cp -f "$(dirname "$0")"/src/{.gitconfig,.gitignore,.lessfilter,.npmrc} "$HOME"
+cp -f "$(dirname "$0")"/src/{.gitconfig,.gitignore,.npmrc} "$HOME"
 
 echo "⚙️ Configuration files copied."
 
@@ -34,15 +34,8 @@ echo "⚙️ Package list updated."
 
 # Install packages
 echo "⚙️ Installing packages..."
-sudo apt-get -qq install -y bat btop eza fd-find fzf mc mise micro ripgrep
+sudo apt-get -qq install -y bat btop eza mise micro
 echo "⚙️ Packages installed."
-
-# Add lesspipe.sh if it doesn't exist
-if [[ ! -f /usr/local/bin/lesspipe.sh ]]; then
-  echo "⚙️ Installing lesspipe..."
-  sudo curl -fsS https://raw.githubusercontent.com/wofr06/lesspipe/refs/heads/lesspipe/lesspipe.sh -o /usr/local/bin/lesspipe.sh
-  echo "⚙️ lesspipe installation completed."
-fi
 
 # Install starship if it doesn't exist
 if [[ ! -f /usr/local/bin/starship ]]; then
