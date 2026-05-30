@@ -12,14 +12,6 @@ cp -f "$(dirname "$0")"/src/{.gitconfig,.gitignore,.lessfilter,.npmrc} "$HOME"
 
 echo "⚙️ Configuration files copied."
 
-# Copy .env.sh if it doesn't exist
-if [ ! -f "$HOME"/.env.sh ]; then
-  cp -f "$(dirname "$0")"/.env.sh "$HOME"/.env.sh
-  echo "⚙️ .env.sh copied."
-else
-  echo "⚙️ .env.sh already exists. Skipping copy."
-fi
-
 echo "⚙️ Setting up package repositories..."
 
 # Create the keyrings directory if it doesn't exist
